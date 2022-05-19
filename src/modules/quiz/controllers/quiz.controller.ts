@@ -10,13 +10,15 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { CreateQuizDto } from '../dto/CreateQuiz.dto';
+import { Quiz } from '../entities/quiz.entity';
 import { QuizService } from '../services/quiz.service';
 
 @Controller('quiz')
 export class QuizController {
   constructor(private quizService: QuizService) {}
+
   @Get('/')
-  async getAllQuiz() {
+  async getAllQuiz(): Promise<Quiz[]> {
     return await this.quizService.getAllQuiz();
   }
 
