@@ -14,9 +14,9 @@ export const typeOrmAsyncConfing: TypeOrmModuleAsyncOptions = {
       database: process.env.DB_NAME,
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
 
-      migrations: [__dirname + '/../migrations/*{.ts,.js}'],
+      migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
       cli: {
-        migrationsDir: __dirname + '/../migrations',
+        migrationsDir: __dirname + '/../database/migrations',
       },
       extra: {
         charset: 'utf8mb4_unicode_ci',
@@ -36,12 +36,13 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   database: process.env.DB_NAME,
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
 
-  migrations: [__dirname + '/../migrations/*{.ts,.js}'],
+  migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
   cli: {
-    migrationsDir: __dirname + '/../migrations',
+    migrationsDir: __dirname + '/../database/migrations',
   },
   extra: {
     charset: 'utf8mb4_unicode_ci',
   },
+  synchronize: false,
   logging: true,
 };

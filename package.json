@@ -20,10 +20,12 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm:cli": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -f src/config/typeorm.config-migrations.ts",
-    "migration:generate": "npm run typeorm:cli -- migration:generate -d src/migrations -n",
-    "migration:create": "npm run typeorm:cli -- migration:create -d src/migrations -n",
+    "migration:generate": "npm run typeorm:cli -- migration:generate -d src/database/migrations -n",
+    "migration:create": "npm run typeorm:cli -- migration:create -d src/database/migrations -n",
     "migration:run": "npm run typeorm:cli migration:run",
-    "migration:revert": "npm run typeorm:cli migration:revert"
+    "migration:revert": "npm run typeorm:cli migration:revert",
+    "seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config -n src/config/typeorm.config-migrations.ts",
+    "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed -n src/config/typeorm.config-migrations.ts"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -34,10 +36,12 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/swagger": "^5.2.1",
     "@nestjs/typeorm": "^8.0.3",
+    "@ngneat/falso": "^5.3.0",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "fastify-swagger": "^5.2.0",
+    "nestjs-typeorm-paginate": "^3.2.0",
     "passport": "^0.5.3",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
@@ -47,7 +51,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "swagger-ui-express": "^4.4.0",
-    "typeorm": "^0.2.45"
+    "typeorm": "^0.2.45",
+    "typeorm-seeding": "^1.6.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
